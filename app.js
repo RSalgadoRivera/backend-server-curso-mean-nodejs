@@ -35,7 +35,12 @@ app.use(bodyParser.json());
 // ====================================================================
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
+var busquedaRoutes = require('./routes/busqueda');
+var hospitalRoutes = require('./routes/hospital');
+var medicoRoutes = require('./routes/medico');
+var uploadRoutes = require('./routes/upload');
 var logingRoutes = require('./routes/login');
+var imagenesRoutes = require('./routes/imagenes');
 
 // ====================================================================
 // Conexión a la base de datos
@@ -48,8 +53,14 @@ mongoose.connection.openUri(rutaDB, (err, resp) => {
 // ====================================================================
 // Rutas
 // ====================================================================
+app.use('/hospital', hospitalRoutes);
+app.use('/medico', medicoRoutes);
 app.use('/usuario', usuarioRoutes);
 app.use('/login', logingRoutes);
+app.use('/busqueda', busquedaRoutes);
+app.use('/upload', uploadRoutes);
+app.use('/img', imagenesRoutes);
+
 app.use('/', appRoutes);
 
 // ====================================================================
